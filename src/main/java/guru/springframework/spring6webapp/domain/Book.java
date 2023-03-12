@@ -13,18 +13,14 @@ public class Book {
     private String title;
     private String isbn;
 
-    public Set<Author> getAuthors() {
-        return authors;
-    }
-
-    public void setAuthors(Set<Author> authors) {
-        this.authors = authors;
-    }
-
     @ManyToMany
     @JoinTable(name = "author_book", joinColumns = @JoinColumn(name = "book_id"),
             inverseJoinColumns = @JoinColumn(name = "author_id"))
     private Set<Author> authors = new HashSet<>();
+
+
+    @ManyToOne
+    private Publisher publisher;
 
     public Long getId() {
         return id;
@@ -36,6 +32,14 @@ public class Book {
 
     public String getTitle() {
         return title;
+    }
+
+    public Set<Author> getAuthors() {
+        return authors;
+    }
+
+    public void setAuthors(Set<Author> authors) {
+        this.authors = authors;
     }
 
     public void setTitle(String title) {
@@ -50,6 +54,13 @@ public class Book {
         this.isbn = isbn;
     }
 
+    public Publisher getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(Publisher publisher) {
+        this.publisher = publisher;
+    }
     @Override
     public String toString() {
         return "Book{" +
